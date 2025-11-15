@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp2
+namespace Tamrin.T2.Enum
 {
-    public class Employer :Person
+     public enum LogicalOperator
     {
+        And,
+        Or
     }
 }

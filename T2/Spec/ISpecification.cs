@@ -4,18 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp2
+namespace Tamrin.T2.Spec
 {
-    public class Person
+    public interface ISpecification<T>
     {
-     
-
-
-
-
+        bool IsSatisfiedBy(T candidate);
     }
-
-
-   
-  
 }
