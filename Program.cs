@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using BenchmarkDotNet.Running;
 using Tamrin.T1;
 using Tamrin.T2;
 using Tamrin.T2.Enum;
@@ -6,6 +7,10 @@ using Tamrin.T2.Extention;
 using Tamrin.T2.Pred;
 using Tamrin.T2.Spec;
 using Tamrin.T3;
+using Tamrin.T4.T4_1;
+using Tamrin.T4.T4_2;
+using Tamrin.T4.T4_2.Interface;
+using Tamrin.T4.T4_2.Model;
 
 Console.WriteLine("Hello, World!");
 
@@ -95,10 +100,10 @@ Console.WriteLine("Hello, World!");
 #region تمرین سوم   
 
 
-var Person = new PersonBuilder().Info.Name("mahdi").Works.At("Developer").Company("Iranianre").Build();
+//var Person = new PersonBuilder().Info.Name("mahdi").Works.At("Developer").Company("Iranianre").Build();
 
 
-Console.WriteLine(Person.ToString());
+//Console.WriteLine(Person.ToString());
 
 
 
@@ -106,6 +111,42 @@ Console.WriteLine(Person.ToString());
 
 
 
+//تمرین چهارم
+
+//بخش اول
+
+
+   // var summary = BenchmarkRunner.Run<StringCreationBenchmarks>();
+
+
+
+//بخش دوم
+
+
+var packages = new List<Package>
+{
+    new() { Name = "Gaming Laptop",      Weight = 4 },
+    new() { Name = "Office Desk Set",    Weight = 85 },
+    new() { Name = "Car",Weight = 26_000 },
+    new() { Name = "Jewelry",     Weight = 2 },
+    new() { Name = "Fridge",Weight = 120 },
+    new() { Name = "Tanker",        Weight = 850_000 }
+};
+
+static ITransferStrategy SelectStrategy(int weight) => weight switch
+{
+    < 10 => new TransferByAirplane(),
+    <= 100 => new TransferByTrain(),
+    _ => new TransferByBoat()
+};
+
+
+foreach (var package in packages)
+{
+    package.Strategy = SelectStrategy(package.Weight);
+    package.Transfer();
+    Console.WriteLine("─────────────────────────────");
+}
 
 
 
